@@ -1,0 +1,4 @@
+service: The layer to connect with the Amplify backend.
+data: This will be the repository layer that abstracts away the networking code, specifically service.
+controller: This is the domain layer to connect the UI with the repository.
+ui: Here, we will create the widgets and the pages that the app will present to the user.

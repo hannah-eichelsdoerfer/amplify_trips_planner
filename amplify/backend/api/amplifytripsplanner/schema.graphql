@@ -1,5 +1,6 @@
 # This "input" configures a global authorization rule to enable public access to
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+
 type Trip @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   tripName: String!
@@ -8,4 +9,24 @@ type Trip @model @auth(rules: [{ allow: owner }]) {
   endDate: AWSDate!
   tripImageUrl: String
   tripImageKey: String
+  Activities: [Activity] @hasMany(indexName: "byTrip", fields: ["id"])
+}
+
+type Activity @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  activityName: String!
+  tripID: ID! @index(name: "byTrip", sortKeyFields: ["activityName"])
+  trip: Trip! @belongsTo(fields: ["tripID"])
+  activityImageUrl: String
+  activityImageKey: String
+  activityDate: AWSDate!
+  activityTime: AWSTime
+  category: ActivityCategory!
+}
+
+enum ActivityCategory {
+  Flight
+  Lodging
+  Meeting
+  Restaurant
 }
