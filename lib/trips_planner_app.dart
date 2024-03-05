@@ -18,7 +18,7 @@ class TripsPlannerApp extends StatelessWidget {
           colorScheme:
               ColorScheme.fromSwatch(primarySwatch: constants.primaryColor)
                   .copyWith(
-            background: Color.fromARGB(255, 220, 186, 150),
+            background: const Color(0xff82CFEA),
           ),
         ),
       ),
